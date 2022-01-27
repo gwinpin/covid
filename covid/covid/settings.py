@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'covid',
         'USER': 'postgres',
         'PASSWORD': os.getenv('covid_pass'),
-        'HOST': '127.0.0.1',
+        'HOST': os.getenv('covid_host'),
         'PORT': "5432",
     }
 }

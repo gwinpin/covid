@@ -54,12 +54,14 @@
       }
     }
   },
-  series: [{
-    name: 'pozitivni celkem',
-          data: [
-            {% for entry in dataset %}{{ entry.pozitivni_celkem }}{% if not forloop.last %}, {% endif %}{% endfor %}
-          ]
-  }, {
+  series: [
+    {#  {#}
+    {#name: 'pozitivni celkem',#}
+    {#      data: [#}
+    {#        {% for entry in dataset %}{{ entry.pozitivni_celkem }}{% if not forloop.last %}, {% endif %}{% endfor %}#}
+    {#      ]  },#}
+
+      {
      name: 'pozitivni bez ockovani',
           data: [
             {% for entry in dataset %}{{ entry.pozitivni_bez_ockovani }}{% if not forloop.last %}, {% endif %}{% endfor %}

@@ -1,0 +1,134 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <script>
+      Highcharts.chart('container', {
+  chart: {
+    type: 'area'
+  },
+  title: {
+    text: 'Historic and Estimated Worldwide Population Distribution by Region'
+  },
+  subtitle: {
+    text: 'Source: Wikipedia.org'
+  },
+  accessibility: {
+    point: {
+      valueDescriptionFormat: '{index}. {point.category}, {point.y:,.0f} millions, {point.percentage:.1f}%.'
+    }
+  },
+  xAxis: {
+    categories: [
+            {% for entry in dataset %}'{{ entry.datum }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+    tickmarkPlacement: 'on',
+    title: {
+      enabled: false
+    }
+  },
+  yAxis: {
+    labels: {
+      format: '{value}%'
+    },
+    title: {
+      enabled: false
+    }
+  },
+  tooltip: {
+    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
+    split: true
+  },
+  plotOptions: {
+    area: {
+      stacking: 'percent',
+      lineColor: '#ffffff',
+      lineWidth: 1,
+      marker: {
+        lineWidth: 1,
+        lineColor: '#ffffff'
+      }
+    }
+  },
+  series: [{
+    name: 'pozitivni celkem',
+          data: [
+            {% for entry in dataset %}{{ entry.pozitivni_celkem }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+  }, {
+     name: 'pozitivni bez ockovani',
+          data: [
+            {% for entry in dataset %}{{ entry.pozitivni_bez_ockovani }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+  }, {
+    name: 'pozitivni_nedokoncene_ockovani',
+          data: [
+            {% for entry in dataset %}{{ entry.pozitivni_nedokoncene_ockovani }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+  }, {
+    name: 'pozitivni_dokoncene_ockovani',
+          data: [
+            {% for entry in dataset %}{{ entry.pozitivni_dokoncene_ockovani }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+  }, {
+     name: 'pozitivni_posilujici_davka',
+          data: [
+            {% for entry in dataset %}{{ entry.pozitivni_posilujici_davka }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+  }]
+});
+      </script>
+</figure>
+
+
+<div id="container2"></div>
+<script>
+  Highcharts.chart('container2', {
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Covid-19 (2022)'
+      },
+      xAxis: {
+          categories: [
+            {% for entry in dataset2 %}'{{ entry.datum }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+      },
+      series: [{
+          name: 'pozitivni celkem',
+          data: [
+            {% for entry in dataset2 %}{{ entry.pozitivni_celkem }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: 'green'
+      }, {
+          name: 'pozitivni bez ockovani',
+          data: [
+            {% for entry in dataset2 %}{{ entry.pozitivni_bez_ockovani }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: 'red'
+      }, {
+          name: 'pozitivni_nedokoncene_ockovani',
+          data: [
+            {% for entry in dataset2 %}{{ entry.pozitivni_nedokoncene_ockovani }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: 'brown'
+      }, {
+          name: 'pozitivni_nedokoncene_ockovani',
+          data: [
+            {% for entry in dataset2 %}{{ entry.pozitivni_nedokoncene_ockovani }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: 'grey'
+      }, {
+          name: 'pozitivni_posilujici_davka',
+          data: [
+            {% for entry in dataset2 %}{{ entry.pozitivni_posilujici_davka }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: 'purple'
+      }]
+  });
+</script>

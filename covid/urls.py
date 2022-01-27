@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from covid19.views import sick
 urlpatterns = [
+    path('', sick),
     path('admin/', admin.site.urls),
 ]

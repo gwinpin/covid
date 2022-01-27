@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'covid19',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'covid',
-        'USER': 'postgres',
+        'USER': 'covid',
         'PASSWORD': os.getenv('covid_pass'),
         'HOST': os.getenv('covid_host'),
         'PORT': "5432",
